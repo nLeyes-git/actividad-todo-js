@@ -1,0 +1,5 @@
+Crear un TODO list:
+  - Tiene que tener un campo de texto en el que el usuario pueda ingresar su nueva tarea
+  - Tiene que tener un botón que le permita al usuario registrar esa nueva tarea
+  - Cuando el usuario toca el botón para registrar la tarea, esta debe agregarse y
+    verse en un listado debajo del campo de texto, y el campo de texto debe quedar en blanco
