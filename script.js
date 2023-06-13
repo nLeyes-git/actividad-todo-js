@@ -1,18 +1,23 @@
 const text = document.getElementById("text");
 const textArea = document.getElementById("output-text");
+const buscador = document.getElementById("buscar-tarea");
 console.log(text);
 const btn = document.getElementById("btn-submit");
 const btn__ascendente = document.getElementById("btn-ascendente");
 const btn__descendiente = document.getElementById("btn-descendiente");
 const btn__borrar = document.getElementById("btn-borrar");
 const indice__a__borrar = document.getElementById("indice-a-borrar");
+const btn__borrar__tarea = document.getElementById("btn-borrar-tarea");
+const btn__buscar__tarea = document.getElementById("btn-buscar-tarea");
 
 let listaDeTareas = [];
+let arrayDeBotones = [];
 
 btn.addEventListener("click", agregarTarea);
 btn__ascendente.addEventListener("click", ordenarAlfAscendente);
 btn__descendiente.addEventListener("click", ordenarAlfDescendiente);
 btn__borrar.addEventListener("click", borrarItemDeLaLista);
+btn__buscar__tarea.addEventListener("click", buscarTareaEnLista);
 
 function agregarTarea() {
   if (validarTextoIngresado()) {
@@ -64,21 +69,43 @@ function borrarItemDeLaLista() {
   console.log(listaDeTareas);
   imprimirTexto();
 }
+/* function borrarTareaIndividual() {
+  listaDeTareas = listaDeTareas.filter((item, i) => i != btn__borrar__tarea.id);
+  console.log(listaDeTareas);
+  imprimirTexto();
+} */
+
+function buscarTareaEnLista() {
+  /*  for (let i = 0; i < listaDeTareas.length; i++) {
+    if (listaDeTareas[i].includes(buscador.value)) {
+
+    }
+  } */
+  listaDeTareas = listaDeTareas.filter((item, i) =>
+    item.includes(buscador.value)
+  );
+  imprimirTexto();
+}
 
 function validarTextoIngresado() {
   return text.value.trim() != "";
 }
 
 function imprimirTexto() {
-  let parrafo = `<ul>`;
+  let parrafo = `<ul id="lista">`;
 
   // for (let i of listaDeTareas) {
   //   parrafo += `<li>${i}</li> `;
   // }
 
-  listaDeTareas.forEach((item, i) => (parrafo += `<li>${i}) ${item}</li> `));
-
+  listaDeTareas.forEach((item, i) => (parrafo += `<li>${i}) ${item} </li>`));
+  /* for (let i = 0; i < listaDeTareas.length; i++) {
+    let boton = `<button class="btn-borrar-tarea" id="${i}">Borrar tarea</button>`;
+    parrafo += `<li>${i}) ${listaDeTareas[i]}` + boton + `</li>`;
+    arrayDeBotones.push();
+  } */
   parrafo += `</ul>`;
+
   textArea.innerHTML = parrafo;
 }
 console.log(listaDeTareas);
