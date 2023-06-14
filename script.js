@@ -81,24 +81,26 @@ function buscarTareaEnLista() {
 
     }
   } */
-  listaDeTareas = listaDeTareas.filter((item, i) =>
+
+  const listaFiltrada = listaDeTareas.filter((item, i) =>
     item.includes(buscador.value)
   );
-  imprimirTexto();
+
+  imprimirTexto(listaFiltrada);
 }
 
 function validarTextoIngresado() {
   return text.value.trim() != "";
 }
 
-function imprimirTexto() {
+function imprimirTexto(lista = listaDeTareas) {
   let parrafo = `<ul id="lista">`;
 
   // for (let i of listaDeTareas) {
   //   parrafo += `<li>${i}</li> `;
   // }
 
-  listaDeTareas.forEach((item, i) => (parrafo += `<li>${i}) ${item} </li>`));
+  lista.forEach((item, i) => (parrafo += `<li>${i}) ${item} </li>`));
   /* for (let i = 0; i < listaDeTareas.length; i++) {
     let boton = `<button class="btn-borrar-tarea" id="${i}">Borrar tarea</button>`;
     parrafo += `<li>${i}) ${listaDeTareas[i]}` + boton + `</li>`;
