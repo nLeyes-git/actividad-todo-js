@@ -9,15 +9,17 @@ const btn__borrar = document.getElementById("btn-borrar");
 const indice__a__borrar = document.getElementById("indice-a-borrar");
 const btn__borrar__tarea = document.getElementById("btn-borrar-tarea");
 const btn__buscar__tarea = document.getElementById("btn-buscar-tarea");
+const btn__refrescar = document.getElementById("btn-refresh");
 
 let listaDeTareas = [];
-let arrayDeBotones = [];
+let arrayDeBotones = document.querySelectorAll(".btn-borrar-tarea");
 
 btn.addEventListener("click", agregarTarea);
 btn__ascendente.addEventListener("click", ordenarAlfAscendente);
 btn__descendiente.addEventListener("click", ordenarAlfDescendiente);
 btn__borrar.addEventListener("click", borrarItemDeLaLista);
 btn__buscar__tarea.addEventListener("click", buscarTareaEnLista);
+btn__refrescar.addEventListener("click", refrescarLista);
 
 function agregarTarea() {
   if (validarTextoIngresado()) {
@@ -55,7 +57,7 @@ function ordenarAlfDescendiente() {
   });
   imprimirTexto();
 }
-function borrarItemDeLaLista() {
+function borrarItemDeLaLista(indice) {
   /* let listaAuxiliar = []; */
   /*   for (let i = 0; i < listaDeTareas.length; i++) {
     if (i != indice__a__borrar.value) {
@@ -63,10 +65,12 @@ function borrarItemDeLaLista() {
     }
   }
   listaDeTareas = listaAuxiliar; */
-  listaDeTareas = listaDeTareas.filter(
-    (item, i) => i != indice__a__borrar.value
-  );
+  listaDeTareas = listaDeTareas.filter((item, i) => i != indice);
   console.log(listaDeTareas);
+  imprimirTexto();
+}
+
+function refrescarLista() {
   imprimirTexto();
 }
 /* function borrarTareaIndividual() {
@@ -100,15 +104,21 @@ function imprimirTexto(lista = listaDeTareas) {
   //   parrafo += `<li>${i}</li> `;
   // }
 
-  lista.forEach((item, i) => (parrafo += `<li>${i}) ${item} </li>`));
-  /* for (let i = 0; i < listaDeTareas.length; i++) {
-    let boton = `<button class="btn-borrar-tarea" id="${i}">Borrar tarea</button>`;
-    parrafo += `<li>${i}) ${listaDeTareas[i]}` + boton + `</li>`;
-    arrayDeBotones.push();
-  } */
+  //lista.forEach((item, i) => (parrafo += `<li>${i}) ${item} </li>`));
+  for (let i = 0; i < lista.length; i++) {
+    let boton = `<button class="btn-borrar-tarea" data-cualquiernombre="holaaa" data-idaborrar="${i}" id="boton-${i}">Borrar tarea</button>`;
+    parrafo += `<li>${i}) ${lista[i]}` + boton + `</li>`;
+  }
   parrafo += `</ul>`;
 
   textArea.innerHTML = parrafo;
+
+  arrayDeBotones = document.querySelectorAll(".btn-borrar-tarea");
+  arrayDeBotones.forEach((item) => {
+    item.addEventListener("click", () =>
+      borrarItemDeLaLista(item.dataset["idaborrar"])
+    );
+  });
 }
 console.log(listaDeTareas);
 
