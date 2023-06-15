@@ -12,7 +12,13 @@ const btn__buscar__tarea = document.getElementById("btn-buscar-tarea");
 const btn__refrescar = document.getElementById("btn-refresh");
 
 let listaDeTareas = [];
+let listaDeTareasJSON = JSON.stringify(listaDeTareas);
+let listaDeTareasRecuperadaDeLocalStorage = JSON.parse(
+  localStorage.getItem("listaDeTareas")
+);
+listaDeTareas = listaDeTareasRecuperadaDeLocalStorage;
 let arrayDeBotones = document.querySelectorAll(".btn-borrar-tarea");
+imprimirTexto();
 
 btn.addEventListener("click", agregarTarea);
 btn__ascendente.addEventListener("click", ordenarAlfAscendente);
@@ -33,6 +39,9 @@ function agregarTarea() {
     }
     parrafo += `</ul>`;
     textArea.innerHTML = parrafo; */
+    listaDeTareasJSON = JSON.stringify(listaDeTareas);
+    localStorage.setItem("listaDeTareas", listaDeTareasJSON);
+
     imprimirTexto();
   }
 }
@@ -44,6 +53,8 @@ function ordenarAlfAscendente() {
       return -1;
     }
   });
+  listaDeTareasJSON = JSON.stringify(listaDeTareas);
+  localStorage.setItem("listaDeTareas", listaDeTareasJSON);
   imprimirTexto();
 }
 
@@ -55,6 +66,8 @@ function ordenarAlfDescendiente() {
       return -1;
     }
   });
+  listaDeTareasJSON = JSON.stringify(listaDeTareas);
+  localStorage.setItem("listaDeTareas", listaDeTareasJSON);
   imprimirTexto();
 }
 function borrarItemDeLaLista(indice) {
@@ -67,6 +80,9 @@ function borrarItemDeLaLista(indice) {
   listaDeTareas = listaAuxiliar; */
   listaDeTareas = listaDeTareas.filter((item, i) => i != indice);
   console.log(listaDeTareas);
+
+  listaDeTareasJSON = JSON.stringify(listaDeTareas);
+  localStorage.setItem("listaDeTareas", listaDeTareasJSON);
   imprimirTexto();
 }
 
