@@ -19,7 +19,7 @@ let listaDeTareas = [];
 let listaDeTareasJSON = JSON.stringify(listaDeTareas);
 /* localStorage.setItem(listaElegida, listaDeTareasJSON); */
 let listaDeTareasRecuperadaDeLocalStorage = JSON.parse(
-  sessionStorage.getItem(listaElegida)
+  localStorage.getItem(listaElegida)
 );
 listaDeTareas = listaDeTareasRecuperadaDeLocalStorage;
 let arrayDeBotones = document.querySelectorAll(".btn-borrar-tarea");
@@ -45,7 +45,7 @@ function agregarTarea() {
     parrafo += `</ul>`;
     textArea.innerHTML = parrafo; */
     listaDeTareasJSON = JSON.stringify(listaDeTareas);
-    /* localStorage.setItem(listaElegida, listaDeTareasJSON); */
+    localStorage.setItem(listaElegida, listaDeTareasJSON);
     sessionStorage.setItem(listaElegida, listaDeTareasJSON);
 
     imprimirTexto();
@@ -60,7 +60,7 @@ function ordenarAlfAscendente() {
     }
   });
   listaDeTareasJSON = JSON.stringify(listaDeTareas);
-  /*  localStorage.setItem(listaElegida, listaDeTareasJSON); */
+   localStorage.setItem(listaElegida, listaDeTareasJSON);
   sessionStorage.setItem(listaElegida, listaDeTareasJSON);
   imprimirTexto();
 }
@@ -74,7 +74,7 @@ function ordenarAlfDescendiente() {
     }
   });
   listaDeTareasJSON = JSON.stringify(listaDeTareas);
-  /*  localStorage.setItem(listaElegida, listaDeTareasJSON); */
+   localStorage.setItem(listaElegida, listaDeTareasJSON);
   sessionStorage.setItem(listaElegida, listaDeTareasJSON);
   imprimirTexto();
 }
@@ -90,7 +90,7 @@ function borrarItemDeLaLista(indice) {
   console.log(listaDeTareas);
 
   listaDeTareasJSON = JSON.stringify(listaDeTareas);
-  /*  localStorage.setItem(listaElegida, listaDeTareasJSON); */
+   localStorage.setItem(listaElegida, listaDeTareasJSON);
   sessionStorage.setItem(listaElegida, listaDeTareasJSON);
   imprimirTexto();
 }
