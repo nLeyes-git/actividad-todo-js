@@ -10,11 +10,16 @@ const indice__a__borrar = document.getElementById("indice-a-borrar");
 const btn__borrar__tarea = document.getElementById("btn-borrar-tarea");
 const btn__buscar__tarea = document.getElementById("btn-buscar-tarea");
 const btn__refrescar = document.getElementById("btn-refresh");
+const titulo = document.getElementById("titulo");
 
+let listaElegida = sessionStorage.getItem("listaElegida");
+
+titulo.innerText = listaElegida;
 let listaDeTareas = [];
 let listaDeTareasJSON = JSON.stringify(listaDeTareas);
+/* localStorage.setItem(listaElegida, listaDeTareasJSON); */
 let listaDeTareasRecuperadaDeLocalStorage = JSON.parse(
-  localStorage.getItem("listaDeTareas")
+  sessionStorage.getItem(listaElegida)
 );
 listaDeTareas = listaDeTareasRecuperadaDeLocalStorage;
 let arrayDeBotones = document.querySelectorAll(".btn-borrar-tarea");
@@ -40,7 +45,8 @@ function agregarTarea() {
     parrafo += `</ul>`;
     textArea.innerHTML = parrafo; */
     listaDeTareasJSON = JSON.stringify(listaDeTareas);
-    localStorage.setItem("listaDeTareas", listaDeTareasJSON);
+    /* localStorage.setItem(listaElegida, listaDeTareasJSON); */
+    sessionStorage.setItem(listaElegida, listaDeTareasJSON);
 
     imprimirTexto();
   }
@@ -54,7 +60,8 @@ function ordenarAlfAscendente() {
     }
   });
   listaDeTareasJSON = JSON.stringify(listaDeTareas);
-  localStorage.setItem("listaDeTareas", listaDeTareasJSON);
+  /*  localStorage.setItem(listaElegida, listaDeTareasJSON); */
+  sessionStorage.setItem(listaElegida, listaDeTareasJSON);
   imprimirTexto();
 }
 
@@ -67,7 +74,8 @@ function ordenarAlfDescendiente() {
     }
   });
   listaDeTareasJSON = JSON.stringify(listaDeTareas);
-  localStorage.setItem("listaDeTareas", listaDeTareasJSON);
+  /*  localStorage.setItem(listaElegida, listaDeTareasJSON); */
+  sessionStorage.setItem(listaElegida, listaDeTareasJSON);
   imprimirTexto();
 }
 function borrarItemDeLaLista(indice) {
@@ -82,7 +90,8 @@ function borrarItemDeLaLista(indice) {
   console.log(listaDeTareas);
 
   listaDeTareasJSON = JSON.stringify(listaDeTareas);
-  localStorage.setItem("listaDeTareas", listaDeTareasJSON);
+  /*  localStorage.setItem(listaElegida, listaDeTareasJSON); */
+  sessionStorage.setItem(listaElegida, listaDeTareasJSON);
   imprimirTexto();
 }
 
